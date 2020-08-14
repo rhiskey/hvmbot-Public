@@ -1,0 +1,12 @@
+version: '3'
+services:
+  hvmbot:
+    build: .
+    environment:
+      - ASPNETCORE_TG_ACCESS_TOKEN: ""
+      - ASPNETCORE_TG_CHAT_ID=
+      - ASPNETCORE_TG_BOT_TOKEN=
+      - ASPNETCORE_VK_LOGIN=
+      - ASPNETCORE_VK_PASS=
+      - ASPNETCORE_VK_API_TOKEN=
+      - ASPNETCORE_VK_GROUP_ID=

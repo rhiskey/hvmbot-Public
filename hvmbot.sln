@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hvmbot", "hvmbot\hvmbot.csproj", "{6DC47851-5F65-4F9B-955F-E4A7FCB0DDAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hvmbotTests", "hvmbotTests\hvmbotTests.csproj", "{830C8FB1-1053-49A1-B143-EA645F76AC4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DC47851-5F65-4F9B-955F-E4A7FCB0DDAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC47851-5F65-4F9B-955F-E4A7FCB0DDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC47851-5F65-4F9B-955F-E4A7FCB0DDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC47851-5F65-4F9B-955F-E4A7FCB0DDAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{830C8FB1-1053-49A1-B143-EA645F76AC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830C8FB1-1053-49A1-B143-EA645F76AC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830C8FB1-1053-49A1-B143-EA645F76AC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830C8FB1-1053-49A1-B143-EA645F76AC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {049044D9-4AD3-4F3D-8144-B403C83444D2}
+	EndGlobalSection
+EndGlobal
