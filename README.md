@@ -1,5 +1,5 @@
 # hvmbot
-This service downloads music & photo from any VKontakte community wall and resends it to your Telegram Channel.
+This service downloads music & photo from any VKontakte community wall (you need to be an admin or owner of group) and resends it to your Telegram Channel.
 
 Change ENV Vars in https://github.com/rhiskey/hvmbot-Public/blob/master/hvmbot/Configuration.cs
 You need to set:
