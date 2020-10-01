@@ -19,20 +19,12 @@ namespace vkMCBot.Mysql
 				MySqlConnection connection = DBUtills.GetDBConnection();
 				command.Connection = connection;
 				command.Connection.Open();
-
-				//// проверить что приходить playerName строчными (мелкими буквами)
-				//playerName = playerName.ToLower();
-				////Замена символа ' чтобы записать в БД
-				//playerName = playerName.Replace("\'", "");
-
-				//Важно строка! При изменении БД менять!
 				sql = "INSERT INTO Parser.SubsBot (UserId, Genres) VALUES ('"+vkid+"', '"+genres+"');";
-				//sql = "INSERT INTO PostedTracks (Trackname) values('" + trackname + "')";
 				command = new MySqlCommand(sql, connection);
 
 				adapter.InsertCommand = new MySqlCommand(sql, connection);
 				adapter.InsertCommand.ExecuteNonQuery();
-				//adapter.InsertCommand.Ex
+
 				Console.WriteLine(String.Format("Inserted in DB VKID: {0}, Genres: {1}",vkid, genres));
 				command.Dispose();
 				connection.Close();
@@ -71,7 +63,6 @@ namespace vkMCBot.Mysql
 				command.Connection = connection;
 				command.Connection.Open();
 
-				//Важно строка! При изменении БД менять!
 				sql ="UPDATE authme.authme SET vkid= NULL WHERE  vkid=\'" + vkid + "\';";
 				command = new MySqlCommand(sql, connection);
 
@@ -97,9 +88,6 @@ namespace vkMCBot.Mysql
 				MySqlConnection connection = DBUtills.GetDBConnection();
 				command.Connection = connection;
 				command.Connection.Open();
-
-
-				//Важно строка! При изменении БД менять!
 				sql = "SELECT * FROM authme.authme ORDER BY vkid ASC LIMIT 1000;";
 				command = new MySqlCommand(sql, connection);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -107,17 +95,16 @@ namespace vkMCBot.Mysql
 				while (reader.Read())  //foreach vkID from SQL
 				{
 					long? vkID=0;
-					//Object cannot be cast from DBNull to other types
+	
 					var vkIDObject = reader.GetValue(19);
 					if (!(vkIDObject is DBNull))
 						vkID = Convert.ToInt64(vkIDObject);
-					//var vkID = Convert.ToInt64(reader.GetValue(19)); 
-					//vkID = (int)vkID;
+	
 					if (vkID != 0)
 						idList.Add(vkID);
 				}
 				reader.Close();
-				//command.Connection.Close();
+
 				command.Dispose();
 				connection.Close();
 			}
@@ -137,10 +124,7 @@ namespace vkMCBot.Mysql
 				MySqlConnection connection = DBUtills.GetDBConnection();
 				command.Connection = connection;
 				command.Connection.Open();
-
-
-				//Важно строка! При изменении БД менять!
-				//sql = "SELECT * FROM authme ORDER BY \'username\' ASC LIMIT 1000;";
+				
 				sql = "SELECT * FROM authme.authme ORDER BY username DESC LIMIT 1000;";
 				command = new MySqlCommand(sql, connection);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -150,11 +134,11 @@ namespace vkMCBot.Mysql
 					var nick = reader.GetValue(1).ToString(); 
 					var isLogged = Convert.ToInt32(reader.GetValue(15));
 
-					if (nick != null /*&& isLogged==1*/) //Надо ли?
+					if (nick != null /*&& isLogged==1*/)
 						nickList.Add(nick);
 				}
 				reader.Close();
-				//command.Connection.Close();
+
 				command.Dispose();
 				connection.Close();
 			}
@@ -174,7 +158,7 @@ namespace vkMCBot.Mysql
 				MySqlConnection connection = DBUtills.GetDBConnection();
 				command.Connection = connection;
 				command.Connection.Open();
-				//Важно строка! При изменении БД менять!
+
 				sql = "SELECT * FROM authme.authme ORDER BY vkid ASC LIMIT 1000;";
 				command = new MySqlCommand(sql, connection);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -182,21 +166,7 @@ namespace vkMCBot.Mysql
 				while (reader.Read())  //foreach vkID from SQL
 				{
 					long? vkID = 0;
-					//Object cannot be cast from DBNull to other types
-
-					//Ищем совпадение. Если в столбце vkid есть совпадение с vkIDtoCheck то акк привязан
-
-					//var ordinal = reader.GetOrdinal("vkid");
-					//if (reader.IsDBNull(ordinal))
-					//{
-					//	//isLinked = false;
-					//}
-					//else
-					//{
-
-					//	isLinked = true;
-					//}
-
+					
 					var vkIDObject = reader.GetValue(19); //"vkid"
 					if (!(vkIDObject is DBNull))
 					{
@@ -208,12 +178,7 @@ namespace vkMCBot.Mysql
 							isLinked = false;
 					}
 
-					////var vkID = Convert.ToInt64(reader.GetValue(19)); 
-					//if (vkID != 0 || vkID != null || !(vkIDObject is DBNull))
-					//{
-					//	isLinked = true;
-					//}
-					//else isLinked = false;
+	
 				}
 				reader.Close();
 				//command.Connection.Close();
@@ -235,22 +200,21 @@ namespace vkMCBot.Mysql
 				MySqlConnection connection = DBUtills.GetDBConnection();
 				command.Connection = connection;
 				command.Connection.Open();
-				//Важно строка! При изменении БД менять!
+
 				sql = "SELECT username FROM authme.authme WHERE vkid = \'"+ vkid + "\'; ";
 				command = new MySqlCommand(sql, connection);
 				MySqlDataReader reader = command.ExecuteReader();
 
 				while (reader.Read())  //foreach vkID from SQL
 				{
-					//long? vkID = 1234567;
-					//Object cannot be cast from DBNull to other types
+
 					var username = reader.GetValue(0);
 					if (!(username is DBNull))
 						playerName = username.ToString();
 
 				}
 				reader.Close();
-				//command.Connection.Close();
+
 				command.Dispose();
 				connection.Close();
 			}
