@@ -10,9 +10,6 @@ namespace vkMCBot.Mysql
     {
         public static MySqlConnection GetDBConnection()
         {
-            //CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypass';
-            //GRANT ALL ON databasename.* TO 'myuser'@'%';
-
             string host = Configuration.dbAuth.host; 
             int port = Configuration.dbAuth.port;
             string database = Configuration.dbAuth.database;
