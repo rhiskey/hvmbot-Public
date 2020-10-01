@@ -9,9 +9,6 @@ namespace vkMCBot.Mysql
     {
         public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
         {
-            // Connection String.
-            // String connString = "Server=" + host + ";Database=" + database
-            //    + ";port=" + port + ";User Id=" + username + ";password=" + password;
             String connString = "Server=" + host + ";Port=" + port + ";Database=" + database
                 + ";Uid=" + username + ";Pwd=" + password;
 
