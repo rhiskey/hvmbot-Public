@@ -9,7 +9,6 @@ namespace hvmbot.Classes
 {
     static class TelegramSender
     {
-        //await TelegramMusic.SendTextAsync("TestText");
         public static async void SendPhoto2TG(object photoFile)
         {
             Classes.Photo photoObject = (Classes.Photo)photoFile;
@@ -17,7 +16,7 @@ namespace hvmbot.Classes
             string fileName = photoObject.LocalPath;
             if (caption == null)
                 caption = "vk.com/hvmlabel #hvm";
-            //await TelegramMusic.SendPhotoAsync(photoUrl, caption);
+
             await TelegramMusic.SendPhotoFromFileAsync(fileName, caption);
         }
 
@@ -30,11 +29,6 @@ namespace hvmbot.Classes
             string author = mp3classFile.Artists;
             string title = mp3classFile.Title;
             Uri thumb = mp3classFile.Thumb;
-
-            //string fileName = "music.mp3";
-            //bool isDowloaded = false;
-            //isDowloaded = AudioDownloader.DownloadMP3FromUrlAsync(url, file);
-            //do { Thread.Sleep(100); } while (isDowloaded == false);
             try
             {
                 AudioDownloader.DownloadMP3FromUrl(url, file);
@@ -48,7 +42,7 @@ namespace hvmbot.Classes
                 else Console.WriteLine("Слишком большой файл >50MB");
             }
             catch (Exception ex) {Logging.ErrorLogging(ex); Logging.ReadError(); }
-            //await TelegramMusic.SendAudioAsync(url);
+
         }
 
         public static async void SendPoll2TG(object pollClass)
@@ -56,10 +50,6 @@ namespace hvmbot.Classes
             TGPoll tGPoll = (TGPoll)pollClass;
             await TelegramMusic.SendPoll(tGPoll.Question, tGPoll.Answers);
         }
-        //public static async void SendMusic2TG(Uri mp3URI)
-        //{
-        //    ////Convert URI TO string to MP3
-        //    //await TelegramMusic.SendAudioAsync(mp3Url);
-        //}
+
     }
 }
