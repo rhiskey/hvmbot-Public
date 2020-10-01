@@ -27,7 +27,7 @@ namespace hvmbot.TelegramPart
         private static ChatId tg_chat_id = Configuration.tg_chat_id;         ///https://habr.com/ru/post/306222/
 
         private static TelegramBotClient Bot;
-        //private static TelegramBotClient botClient = new TelegramBotClient(tg_acces_token, new HttpToSocks5Proxy(Configuration.Proxy.Host, Configuration.Proxy.Port));
+      
         private static TelegramBotClient botClient = new TelegramBotClient(tg_acces_token);
         private static int waitUntillUpload = 30000; //milliseconds
 
@@ -79,7 +79,6 @@ namespace hvmbot.TelegramPart
         {
             botClient = Auth();
             //Не может открыть адрес вк, т.к. привязан к IP - поэтому нужно загрузить- затем отправить
-
             Message message = await botClient.SendAudioAsync(tg_chat_id, mp3Link); //or e.Message.Chat
         }
 
@@ -87,8 +86,7 @@ namespace hvmbot.TelegramPart
         {
             botClient = Auth();
             Message msg = null;
-            //Добавить в replyMarkup клавиатуру зелен галочка emoji и крестик (либо лайк и дизлайк)
-            //byte lovely = "\xF0\x9F\x98\x8D";
+
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
             {
                     // first row
@@ -97,18 +95,11 @@ namespace hvmbot.TelegramPart
                         InlineKeyboardButton.WithCallbackData("+ Кайф", "likePressed"),
                         InlineKeyboardButton.WithCallbackData("- Шлак", "dislikePressed"),
                     }
-                    //// second row
-                    //new []
-                    //{
-                    //    InlineKeyboardButton.WithCallbackData("2.1", "21"),
-                    //    InlineKeyboardButton.WithCallbackData("2.2", "22"),
-                    //}
+
             });
-            //Доделать отображение на кнопках счетчика нажатий 
 
             string thumbUrl = thumbnailUrl.AbsoluteUri.ToString(), thumbName = "thumb.jpg" , thumbFilePath = Path.GetFileName(thumbName) ;
 
-            //Не может открыть адрес вк, т.к. привязан к IP - поэтому нужно загрузить- затем отправить
             try
             {
                 using (FileStream fstream = System.IO.File.OpenRead(localFilePath))
@@ -117,9 +108,7 @@ namespace hvmbot.TelegramPart
 
 
                     #region UploadAudio_with_thumbnail
-                    //await Bot.SendChatActionAsync(tg_chat_id, ChatAction.UploadPhoto); //Typing Status Not Needed
 
-                    // Отправлять в качестве превью уже загруженную картинку поста (ВЫШЕ)
                     InputMedia thumb = new InputMedia(thumbUrl); 
 
 #if WANT_TO_DONWLOAD_THUMB
@@ -161,7 +150,7 @@ namespace hvmbot.TelegramPart
 
 #if THUMB_PROPERLY_STREAMED_OR_LOADED
                     CheckThumb:
-                        if (thumb != null) //GOVNO
+                        if (thumb != null)
                         {
                             try
                             {
@@ -173,7 +162,7 @@ namespace hvmbot.TelegramPart
                         {
 #endif
                             msg = await botClient.SendAudioAsync(tg_chat_id, iof, message, ParseMode.Default, duration: 0, performer: author, title /*, false, 0, inlineKeyboard*/ /*,false, 0, null, new CancellationTokenSource(waitUntillUpload).Token*/); //Передавать JPEG <200 кб превью (фотку поста)
-//                      }
+                        }
                     }
                     else msg = await botClient.SendAudioAsync(tg_chat_id, iof);
                 }
@@ -184,16 +173,16 @@ namespace hvmbot.TelegramPart
 
                 System.IO.File.Delete(localFilePath);
 
-//                System.IO.File.Delete(thumbFilePath);
+
 
             }
-            catch (Exception ioe) { Logging.ErrorLogging(ioe); Logging.ReadError(); /*Request timed out*/ }
+            catch (Exception ioe) { Logging.ErrorLogging(ioe); Logging.ReadError(); / }
         }
         public static async System.Threading.Tasks.Task SendAudioFromFileAsync(string localFilePath)
         {
             botClient = Auth();
             Message msg = null;
-            //Не может открыть адрес вк, т.к. привязан к IP - поэтому нужно загрузить- затем отправить
+
             using (FileStream fstream = System.IO.File.OpenRead(localFilePath))
             {
                 InputOnlineFile iof = new InputOnlineFile(fstream);
@@ -208,8 +197,6 @@ namespace hvmbot.TelegramPart
         }
         public static async Task SendPoll(string question, IEnumerable<string> pollAnswers)
         {
-
-            //poll
             botClient = Auth();
             await botClient.SendPollAsync(tg_chat_id, question, pollAnswers);
         }
@@ -221,15 +208,12 @@ namespace hvmbot.TelegramPart
                 var message = ev.CallbackQuery.Message;
                 if (ev.CallbackQuery.Data == "likePressed")
                 {
-                    // Отобразить на кнопке число нажатий
-                    //likeCounter++;
-                    // сюда то что тебе нужно сделать при нажатии на первую кнопку 
+
                 }
                 else
                 if (ev.CallbackQuery.Data == "dislikePressed")
                 {
-                    //dislikeCouner++;
-                    // сюда то что нужно сделать при нажатии на вторую кнопку
+
                 }
             };
         }
