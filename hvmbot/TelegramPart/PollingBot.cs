@@ -56,17 +56,6 @@ namespace hvmbot.TelegramPart
 
 
 
-            // StartReceiving does not block the caller thread. Receiving is done on the ThreadPool.
-
-            //Bot.StartReceiving(
-
-            //    new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
-
-            //    cts.Token
-
-            //);
-
-
 
             Console.WriteLine($"Start listening for @{me.Username}");
 
@@ -100,17 +89,6 @@ namespace hvmbot.TelegramPart
 
                 UpdateType.ChosenInlineResult => BotOnChosenInlineResultReceived(update.ChosenInlineResult),
 
-                // UpdateType.Unknown:
-
-                // UpdateType.ChannelPost:
-
-                // UpdateType.EditedChannelPost:
-
-                // UpdateType.ShippingQuery:
-
-                // UpdateType.PreCheckoutQuery:
-
-                // UpdateType.Poll:
 
                 _ => UnknownUpdateHandlerAsync(update)
 
