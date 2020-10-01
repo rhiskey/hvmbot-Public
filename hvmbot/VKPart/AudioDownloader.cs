@@ -13,7 +13,7 @@ namespace hvmbot.VKPart
     {
         static bool isDownloaded = false;
 
-        //Получить MP3 ссылку на песню
+        //Get MP3 Link
         public static Uri DecodeAudioUrl(this Uri audioUrl)
         {
             var segments = audioUrl.Segments.ToList();
@@ -29,16 +29,7 @@ namespace hvmbot.VKPart
         public static bool DownloadMP3FromUrl(string url, string fileName)
         {
             isDownloaded = false;
-            //string filePath = fileName;
-            //var destination = Path.Combine(
-            // System.Environment.GetFolderPath(
-            //    System.Environment.SpecialFolder.ApplicationData),
-            //        fileName);
-            //using (WebClient myWebClient = new WebClient())
-            //{
-            //    myWebClient.DownloadFileCompleted += DownloadCompleted;
-            //    myWebClient.DownloadFileAsync(new Uri(url), fileName);
-            //}
+
             new WebClient().DownloadFile(new Uri(url), fileName);
             isDownloaded = true;
 
@@ -47,10 +38,7 @@ namespace hvmbot.VKPart
 
         public static void DownloadCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            //bool isDownloaded = false;
-            //Console.WriteLine("Success");
             isDownloaded = true;
-            //return isDownloaded;
         }
     }
 }
