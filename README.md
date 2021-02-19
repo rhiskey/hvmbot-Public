@@ -5,7 +5,9 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/rhiskey/hvmbot-Public?style=social)
 # hvmbot
 This service downloads music & photo from any VKontakte community wall (you need to be an admin or owner of group) and resends it to your Telegram Channel.
+
 ![Example](https://media.giphy.com/media/759WlCkJws0okhvsAV/giphy.gif)
+
 Change ENV Vars in https://github.com/rhiskey/hvmbot-Public/blob/master/hvmbot/Configuration.cs
 You need to set:
 - "BotToken ": "", - from @BotFather
@@ -15,6 +17,7 @@ You need to set:
 - "AccessToken": "", - from @BotFather
 - "tg_chat_id ": "", - Your Public Channel or Chat
 - "VK_API_TOKEN": "" - https://vkhost.github.io/
+
 ![HOWTO example](https://media.giphy.com/media/lxf92CAHTXXckIm54D/giphy.gif)
 
 Latest Docker image: https://hub.docker.com/repository/docker/vovanja/hvmbot
